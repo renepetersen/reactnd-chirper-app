@@ -24,11 +24,13 @@ class TweetPage extends Component {
 }
 
 function mapStateToProps ({ authedUser, tweets, users }, props) {
+  // wordt nu als prop meegegeven bij het aanroepen van tweetpage. faking
+  // wordt binnenkort ingesteld door react router.
   const { id } = props.match.params
 
   return {
-    id,
-    replies: !tweets[id]
+    id, //tweet id, in dit geval uit de url / faking.
+    replies: !tweets[id] // elke reply op een tweet. Als er geen tweet bestaat met dit id dan een lege array
       ? []
       : tweets[id].replies.sort((a,b,) => tweets[b].timestamp - tweets[a].timestamp)
   }
